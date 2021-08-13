@@ -7,10 +7,6 @@ pub struct Point {
 #[derive(Debug)]
 pub enum Shape {
     NullShape,
-    Point {
-        x: f64,
-        y: f64
-    },
     MultiPoint {
         bbox_xmin: f64,
         bbox_ymin: f64,

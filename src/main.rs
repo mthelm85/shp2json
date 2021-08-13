@@ -3,6 +3,9 @@ use std::io::{ Error };
 use std::vec::Vec;
 use std::convert::TryInto;
 
+use serde_json;
+
+mod geojson;
 mod main_header;
 mod polygon;
 mod record_header;
@@ -23,6 +26,8 @@ fn main() -> Result<(), Error> {
         records.push(rcrd);
         start = start + (len * 2) + 8;
     }
-    println!("{:#?}", records[0]);
+
+    serde_json::to_writer(&File::create("data.json")?, &geojson::to_geojson(&records))?;
+
     Ok(())
 }
